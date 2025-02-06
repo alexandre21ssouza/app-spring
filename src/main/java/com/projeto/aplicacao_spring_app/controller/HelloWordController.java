@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/hello-word")
+@RequestMapping("/hello-world")
 public class HelloWordController {
 
     @Autowired
@@ -20,6 +20,11 @@ public class HelloWordController {
 
     @PostMapping("")
     public String helloWorldPost(@RequestBody User body){
-        return "Hello World" + body.getName();
+        return "Hello World " + body.getName();
+    }
+
+    @PostMapping("/{id}")
+    public String helloWorldPost(@PathVariable("id") String id, @RequestBody User body){
+        return "Hello World " + body.getName() + id;
     }
 }
