@@ -1,13 +1,12 @@
 package com.projeto.aplicacao_spring_app.controller;
 
+import com.projeto.aplicacao_spring_app.domain.User;
 import com.projeto.aplicacao_spring_app.service.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/hello-word")
+@RequestMapping("/hello-world")
 public class HelloWordController {
 
     @Autowired
@@ -17,5 +16,15 @@ public class HelloWordController {
     @GetMapping
     public String helloWord(){
         return helloWorldService.helloWorld("Alexandre");
+    }
+
+    @PostMapping("")
+    public String helloWorldPost(@RequestBody User body){
+        return "Hello World " + body.getName();
+    }
+
+    @PostMapping("/{id}")
+    public String helloWorldPost(@PathVariable("id") String id, @RequestBody User body){
+        return "Hello World " + body.getName() + id;
     }
 }
